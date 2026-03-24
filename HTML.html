@@ -3,7 +3,7 @@
   <button class="memo-btn" onclick="setMode('MASK')">마스킹 모드</button>
   <button class="memo-btn" onclick="setMode('BLANK')">빈칸 채우기</button>
   <button class="memo-btn" onclick="setMode('HINT')">첫글자 힌트</button>
-  <button class="memo-btn" onclick="toggleEditMode('ON')">커스텀 편집</button>
+  <button class="memo-btn" onclick="toggleEditMode('TOGGLE')" style="background-color: #74b9ff; color: white;">커스텀 편집</button>
 </div>
 
 <div id="memoBottomPanel" class="memo-bottom-panel">
@@ -26,9 +26,11 @@
     if (isEditMode) return alert('편집 모드를 먼저 종료해주세요.');
     currentMode = mode;
     
-    contentArea.className = contentArea.className.replace(/memo-mode-\w+/g, '');
-    if (mode === 'VIEW') contentArea.classList.add('memo-mode-answer');
-    if (mode === 'MASK') contentArea.classList.add('memo-mode-mask');
+    if (contentArea) {
+      contentArea.className = contentArea.className.replace(/memo-mode-\w+/g, '');
+      if (mode === 'VIEW') contentArea.classList.add('memo-mode-answer');
+      if (mode === 'MASK') contentArea.classList.add('memo-mode-mask');
+    }
 
     document.querySelectorAll('.memo-mask').forEach(span => {
       span.classList.remove('is-correct', 'is-incorrect');
@@ -46,7 +48,6 @@
         input.type = 'text';
         input.className = 'memo-input';
         
-        // [추가] 텍스트 길이에 비례한 동적 너비 할당 (ch 단위 활용, 여백 고려)
         input.style.width = `calc(${Math.max(2, answer.length)}ch + 16px)`;
 
         if (mode === 'HINT') {
@@ -84,6 +85,11 @@
 
   function toggleEditMode(state) {
     const bottomPanel = document.getElementById('memoBottomPanel');
+
+    // TOGGLE 상태일 경우 현재 상태의 반대로 설정
+    if (state === 'TOGGLE') {
+      state = isEditMode ? 'OFF' : 'ON';
+    }
 
     if (state === 'OFF') {
       isEditMode = false;
@@ -137,12 +143,10 @@
   }
 
   window.addEventListener('keydown', function(e) {
-    // [추가] ESC 키를 누르면 커스텀 편집 모드 닫기
     if (e.key === 'Escape' && isEditMode) {
       toggleEditMode('OFF');
     }
 
-    // Ctrl+Z (Windows) 또는 Cmd+Z (Mac)
     if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
       if (isEditMode && historyStack.length > 0) {
         e.preventDefault();
@@ -161,4 +165,9 @@
       alert("복사 실패. 브라우저 권한을 확인해주세요.");
     });
   }
+
+  // [추가] 페이지 로드 시 즉시 '정답 보기(VIEW)' 모드 강제 실행
+  window.addEventListener('DOMContentLoaded', () => {
+    setMode('VIEW');
+  });
 </script>
