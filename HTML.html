@@ -47,22 +47,8 @@
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'memo-input';
-        
-        // --- 텍스트 박스 유동적 너비 계산 로직 시작 ---
-        let displayLength = 0;
-        for (let i = 0; i < answer.length; i++) {
-          // 한글 등 특수문자는 폭을 2로, 영문/숫자/공백은 1로 계산
-          displayLength += answer.charCodeAt(i) > 127 ? 2 : 1;
-        }
-        
-        // 1. 정답 길이보다 +3글자 정도 여유 추가 (한글 기준이므로 폭 6 추가)
-        displayLength += 6;
-        
-        // 2. 최소 크기 한글 문자 7개 보장 (한글 7글자 = 폭 14)
-        const finalWidth = Math.max(14, displayLength);
-        
-        input.style.width = `calc(${finalWidth}ch + 16px)`;
-        // --- 텍스트 박스 유동적 너비 계산 로직 끝 ---;
+
+        input.style.width = `calc(${Math.max(10, answer.length + 6)}ch + 16px)`;
 
         if (mode === 'HINT') {
           input.placeholder = answer.charAt(0);
