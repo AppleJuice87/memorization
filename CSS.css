@@ -150,3 +150,35 @@
 .memo-bottom-buttons button:hover {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
+
+/* --- 옵시디언 스타일: 중첩 리스트 가이드라인 (세로선) --- */
+
+/* hELLO 스킨의 본문 영역(.prose) 및 기본 티스토리 본문 영역 타겟팅 */
+.prose ul ul, .prose ul ol,
+.prose ol ul, .prose ol ol,
+.tt_article_useless_p_margin ul ul,
+.tt_article_useless_p_margin ul ol,
+.tt_article_useless_p_margin ol ul,
+.tt_article_useless_p_margin ol ol {
+  /* 세로선 굵기와 색상 (옵시디언 느낌의 연한 회색) */
+  border-left: 2px solid #e2e8f0 !important; 
+  
+  /* 선과 우측 텍스트(하위 리스트) 사이의 간격 */
+  padding-left: 4em !important; 
+  
+  /* 부모 글머리 기호(•)의 중앙 아래에 선이 오도록 위치 미세조정 */
+  margin-left: -1em !important; 
+  
+  /* 마우스 오버 시 부드러운 색상 전환 효과 */
+  transition: border-color 0.1s ease !important; 
+}
+
+/* 마우스를 올렸을 때 선 색상이 약간 진해지는 효과 (현재 읽는 위치 파악 용이) */
+.prose ul ul:hover, .prose ul ol:hover,
+.prose ol ul:hover, .prose ol ol:hover,
+.tt_article_useless_p_margin ul ul:hover,
+.tt_article_useless_p_margin ul ol:hover,
+.tt_article_useless_p_margin ol ul:hover,
+.tt_article_useless_p_margin ol ol:hover {
+  border-left-color: #adadad !important; /* 조금 더 짙은 슬레이트 회색 */
+}
