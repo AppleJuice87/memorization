@@ -1,9 +1,11 @@
 <div class="memo-floating-panel">
   <button class="memo-btn" onclick="setMode('VIEW')">정답 보기</button>
   <button class="memo-btn" onclick="setMode('MASK')">마스킹 모드</button>
-  <button class="memo-btn" onclick="setMode('BLANK')">빈칸 채우기</button>
-  <button class="memo-btn" onclick="setMode('HINT')">첫글자 힌트</button>
-  <button class="memo-btn" onclick="setMode('TYPING')">타이핑 연습</button>
+  
+  <button class="memo-btn gray-btn" onclick="setMode('BLANK')">빈칸 채우기</button>
+  <button class="memo-btn gray-btn" onclick="setMode('HINT')">첫글자 힌트</button>
+  <button class="memo-btn gray-btn" onclick="setMode('TYPING')">타이핑 연습</button>
+  
   <button class="memo-btn" onclick="toggleEditMode('TOGGLE')" style="background-color: #74b9ff; color: white;">커스텀 편집</button>
 </div>
 
@@ -56,11 +58,12 @@
 
         // --- 텍스트 박스 동적 너비 계산 (한글/영문 폭 차이 고려) ---
         let displayLength = 0;
-        for (let i = 0; i < answer.length; i++) {
-          displayLength += answer.charCodeAt(i) > 127 ? 2 : 1;
-        }
-        displayLength += 6; // 한글 3글자(+6) 정도의 여유
-        const finalWidth = Math.max(14, displayLength); // 최소 한글 7글자(14) 보장
+        // for (let i = 0; i < answer.length; i++) {
+        //   displayLength += answer.charCodeAt(i) > 127 ? 2 : 1;
+        // }
+        // displayLength += 0; // 한글 3글자(+6) 정도의 여유
+        displayLength = answer.length + 6;
+        const finalWidth = Math.max(10, displayLength); // 최소 한글 7글자(14) 보장
         input.style.width = `calc(${finalWidth}ch + 16px)`;
 
         // --- 힌트 텍스트 설정 ---
