@@ -8,8 +8,11 @@
 
 <div id="memoBottomPanel" class="memo-bottom-panel">
   <span id="panelGuideText">[드래그]: 빈칸 생성 &nbsp;&nbsp; [우클릭]: 빈칸 제거 &nbsp;&nbsp; [Ctrl/CMD]+[Z]: 되돌리기</span>
-  <button onclick="copyToClipboard()">저장 (클립보드 복사)</button>
-  <button onclick="toggleEditMode('OFF')">닫기 (ESC)</button>
+  
+  <div class="memo-bottom-buttons">
+    <button onclick="copyToClipboard()">저장 (클립보드 복사)</button>
+    <button onclick="toggleEditMode('OFF')">닫기 (ESC)</button>
+  </div>
 </div>
 
 <script>
