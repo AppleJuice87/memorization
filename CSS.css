@@ -17,7 +17,7 @@
 /* 2. 오답 상태 (빨간색 텍스트 + 볼드 처리) */
 .memo-mask.is-incorrect {
   color: #e74c3c;
-  font-weight: bold; /* 요청하신 오답 볼드 처리 추가 */
+  font-weight: bold;
 }
 
 /* 3. 마스킹 모드 (연두색 박스, 글자 숨김) */
@@ -30,16 +30,35 @@
   color: #ffffff;
 }
 
-/* 4. 빈칸 채우기 / 첫글자 힌트 모드의 Input 스타일 */
+/* --- [추가] 힌트 유지용 Wrapper 및 힌트 텍스트 스타일 --- */
+.memo-input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.memo-hint-text {
+  position: absolute;
+  left: 7px; /* 입력 텍스트와 완벽히 겹치도록 위치 미세조정 */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b2bec3; /* 흐린 회색 힌트 */
+  pointer-events: none; /* 클릭 방해 금지 */
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* 4. 빈칸 채우기 / 첫글자 힌트 / 타이핑 모드의 Input 스타일 */
 .memo-input {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 2px 6px;
   font-size: 1em;
-  /* 너비는 JS에서 동적으로 인라인 할당되므로 min-width만 작게 유지 */
   min-width: 40px; 
   outline: none;
-  text-align: center;
+  text-align: left;
+  background-color: transparent !important; /* 힌트가 보이도록 투명화 */
+  position: relative;
+  z-index: 2; /* 힌트 텍스트보다 위로 배치 */
 }
 .memo-input:focus {
   border-color: #0984e3;
@@ -70,29 +89,53 @@
 
 /* --- 하단 커스텀 편집 안내 패널 --- */
 .memo-bottom-panel {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  z-index: 9999;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background-color: #333 !important;
+  color: white !important;
+  padding: 15px 20px !important;
+  
+  display: flex !important;
+  flex-direction: row !important; 
+  flex-wrap: nowrap !important; 
+  justify-content: space-between !important; 
+  align-items: center !important;
+  
+  z-index: 9999 !important;
   transform: translateY(100%);
   transition: transform 0.3s ease;
 }
+
 .memo-bottom-panel.show {
   transform: translateY(0);
 }
-.memo-bottom-panel button {
-  background-color: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 5px 15px;
-  border-radius: 4px;
-  cursor: pointer;
+
+.memo-bottom-panel span {
+  flex-shrink: 1 !important; 
+  margin-right: auto !important;
+}
+
+/* 버튼들을 감싸는 그룹 (우측 고정) */
+.memo-bottom-buttons {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 15px !important;
+  flex-shrink: 0 !important; 
+}
+
+.memo-bottom-buttons button {
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  color: white !important;
+  padding: 5px 15px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+}
+
+.memo-bottom-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }

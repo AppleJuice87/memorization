@@ -3,13 +3,17 @@
   <button class="memo-btn" onclick="setMode('MASK')">마스킹 모드</button>
   <button class="memo-btn" onclick="setMode('BLANK')">빈칸 채우기</button>
   <button class="memo-btn" onclick="setMode('HINT')">첫글자 힌트</button>
-  <button class="memo-btn" onclick="toggleEditMode('ON')">커스텀 편집</button>
+  <button class="memo-btn" onclick="setMode('TYPING')">타이핑 연습</button>
+  <button class="memo-btn" onclick="toggleEditMode('TOGGLE')" style="background-color: #74b9ff; color: white;">커스텀 편집</button>
 </div>
 
 <div id="memoBottomPanel" class="memo-bottom-panel">
   <span id="panelGuideText">[드래그]: 빈칸 생성 &nbsp;&nbsp; [우클릭]: 빈칸 제거 &nbsp;&nbsp; [Ctrl/CMD]+[Z]: 되돌리기</span>
-  <button onclick="copyToClipboard()">저장 (클립보드 복사)</button>
-  <button onclick="toggleEditMode('OFF')">닫기 (ESC)</button>
+  
+  <div class="memo-bottom-buttons">
+    <button onclick="copyToClipboard()">저장 (클립보드 복사)</button>
+    <button onclick="toggleEditMode('OFF')">닫기 (ESC)</button>
+  </div>
 </div>
 
 <script>
@@ -23,9 +27,11 @@
     if (isEditMode) return alert('편집 모드를 먼저 종료해주세요.');
     currentMode = mode;
     
-    contentArea.className = contentArea.className.replace(/memo-mode-\w+/g, '');
-    if (mode === 'VIEW') contentArea.classList.add('memo-mode-answer');
-    if (mode === 'MASK') contentArea.classList.add('memo-mode-mask');
+    if (contentArea) {
+      contentArea.className = contentArea.className.replace(/memo-mode-\w+/g, '');
+      if (mode === 'VIEW') contentArea.classList.add('memo-mode-answer');
+      if (mode === 'MASK') contentArea.classList.add('memo-mode-mask');
+    }
 
     document.querySelectorAll('.memo-mask').forEach(span => {
       span.classList.remove('is-correct', 'is-incorrect');
@@ -34,20 +40,39 @@
       }
     });
 
-    if (mode === 'BLANK' || mode === 'HINT') {
+    // BLANK, HINT, TYPING 3가지 모드 지원
+    if (mode === 'BLANK' || mode === 'HINT' || mode === 'TYPING') {
       document.querySelectorAll('.memo-mask').forEach(span => {
         const answer = span.innerText;
         span.dataset.answer = answer; 
         
+        // 힌트가 입력창 뒤에 남도록 wrapper 생성
+        const wrapper = document.createElement('span');
+        wrapper.className = 'memo-input-wrapper';
+
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'memo-input';
-        
-        // [추가] 텍스트 길이에 비례한 동적 너비 할당 (ch 단위 활용, 여백 고려)
-        input.style.width = `calc(${Math.max(2, answer.length)}ch + 16px)`;
 
-        if (mode === 'HINT') {
-          input.placeholder = answer.charAt(0);
+        // --- 텍스트 박스 동적 너비 계산 (한글/영문 폭 차이 고려) ---
+        let displayLength = 0;
+        for (let i = 0; i < answer.length; i++) {
+          displayLength += answer.charCodeAt(i) > 127 ? 2 : 1;
+        }
+        displayLength += 6; // 한글 3글자(+6) 정도의 여유
+        const finalWidth = Math.max(14, displayLength); // 최소 한글 7글자(14) 보장
+        input.style.width = `calc(${finalWidth}ch + 16px)`;
+
+        // --- 힌트 텍스트 설정 ---
+        let hintText = '';
+        if (mode === 'HINT') hintText = answer.charAt(0);
+        if (mode === 'TYPING') hintText = answer; // 타이핑 연습은 전체 힌트
+
+        if (hintText) {
+          const hintSpan = document.createElement('span');
+          hintSpan.className = 'memo-hint-text';
+          hintSpan.innerText = hintText;
+          wrapper.appendChild(hintSpan); // 힌트를 wrapper에 먼저 추가(배경역할)
         }
         
         input.addEventListener('keydown', function(e) {
@@ -73,14 +98,19 @@
           }
         });
 
+        wrapper.appendChild(input);
         span.innerHTML = '';
-        span.appendChild(input);
+        span.appendChild(wrapper);
       });
     }
   }
 
   function toggleEditMode(state) {
     const bottomPanel = document.getElementById('memoBottomPanel');
+
+    if (state === 'TOGGLE') {
+      state = isEditMode ? 'OFF' : 'ON';
+    }
 
     if (state === 'OFF') {
       isEditMode = false;
@@ -134,12 +164,10 @@
   }
 
   window.addEventListener('keydown', function(e) {
-    // [추가] ESC 키를 누르면 커스텀 편집 모드 닫기
     if (e.key === 'Escape' && isEditMode) {
       toggleEditMode('OFF');
     }
 
-    // Ctrl+Z (Windows) 또는 Cmd+Z (Mac)
     if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
       if (isEditMode && historyStack.length > 0) {
         e.preventDefault();
@@ -158,4 +186,8 @@
       alert("복사 실패. 브라우저 권한을 확인해주세요.");
     });
   }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setMode('VIEW');
+  });
 </script>
