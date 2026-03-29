@@ -1,196 +1,200 @@
-<div class="memo-floating-panel">
-  <button class="memo-btn" onclick="setMode('VIEW')">정답 보기</button>
-  <button class="memo-btn" onclick="setMode('MASK')">마스킹 모드</button>
-  
-  <button class="memo-btn gray-btn" onclick="setMode('BLANK')">빈칸 채우기</button>
-  <button class="memo-btn gray-btn" onclick="setMode('HINT')">첫글자 힌트</button>
-  <button class="memo-btn gray-btn" onclick="setMode('TYPING')">타이핑 연습</button>
-  
-  <button class="memo-btn" onclick="toggleEditMode('TOGGLE')" style="background-color: #74b9ff; color: white;">커스텀 편집</button>
-</div>
+    <div class="memo-floating-panel">
+      <button class="memo-btn" onclick="setMode('VIEW')">정답 보기</button>
+      <button class="memo-btn" onclick="setMode('MASK')">마스킹 모드</button>
+      
+      <button class="memo-btn gray-btn" onclick="setMode('BLANK')">빈칸 채우기</button>
+      <button class="memo-btn gray-btn" onclick="setMode('HINT')">첫글자 힌트</button>
+      <button class="memo-btn gray-btn" onclick="setMode('TYPING')">타이핑 연습</button>
+      
+      <button class="memo-btn" onclick="toggleEditMode('TOGGLE')" style="background-color: #74b9ff; color: white;">커스텀 편집</button>
+    </div>
 
-<div id="memoBottomPanel" class="memo-bottom-panel">
-  <span id="panelGuideText">[드래그]: 빈칸 생성 &nbsp;&nbsp; [우클릭]: 빈칸 제거 &nbsp;&nbsp; [Ctrl/CMD]+[Z]: 되돌리기</span>
-  
-  <div class="memo-bottom-buttons">
-    <button onclick="copyToClipboard()">저장 (클립보드 복사)</button>
-    <button onclick="toggleEditMode('OFF')">닫기 (ESC)</button>
-  </div>
-</div>
+    <div id="memoBottomPanel" class="memo-bottom-panel">
+      <span id="panelGuideText">[드래그]: 빈칸 생성 &nbsp;&nbsp; [우클릭]: 빈칸 제거 &nbsp;&nbsp; [Ctrl/CMD]+[Z]: 되돌리기</span>
+      
+      <div class="memo-bottom-buttons">
+        <button onclick="copyToClipboard()">저장 (클립보드 복사)</button>
+        <button onclick="toggleEditMode('OFF')">닫기 (ESC)</button>
+      </div>
+    </div>
 
-<script>
-  let currentMode = 'VIEW';
-  let isEditMode = false;
-  let historyStack = [];
+    <script>
+      let currentMode = 'VIEW';
+      let isEditMode = false;
+      let historyStack = [];
 
-  const contentArea = document.querySelector('.tt_article_useless_p_margin') || document.querySelector('.prose') || document.body;
+      const contentArea = document.querySelector('.tt_article_useless_p_margin') || document.querySelector('.prose') || document.body;
 
-  function setMode(mode) {
-    if (isEditMode) return alert('편집 모드를 먼저 종료해주세요.');
-    currentMode = mode;
-    
-    if (contentArea) {
-      contentArea.className = contentArea.className.replace(/memo-mode-\w+/g, '');
-      if (mode === 'VIEW') contentArea.classList.add('memo-mode-answer');
-      if (mode === 'MASK') contentArea.classList.add('memo-mode-mask');
-    }
-
-    document.querySelectorAll('.memo-mask').forEach(span => {
-      span.classList.remove('is-correct', 'is-incorrect');
-      if (span.querySelector('input')) {
-        span.innerHTML = span.dataset.answer;
-      }
-    });
-
-    // BLANK, HINT, TYPING 3가지 모드 지원
-    if (mode === 'BLANK' || mode === 'HINT' || mode === 'TYPING') {
-      document.querySelectorAll('.memo-mask').forEach(span => {
-        const answer = span.innerText;
-        span.dataset.answer = answer; 
+      function setMode(mode) {
+        if (isEditMode) return alert('편집 모드를 먼저 종료해주세요.');
+        currentMode = mode;
         
-        // 힌트가 입력창 뒤에 남도록 wrapper 생성
-        const wrapper = document.createElement('span');
-        wrapper.className = 'memo-input-wrapper';
-
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'memo-input';
-
-        // --- 텍스트 박스 동적 너비 계산 (한글/영문 폭 차이 고려) ---
-        let displayLength = 0;
-        // for (let i = 0; i < answer.length; i++) {
-        //   displayLength += answer.charCodeAt(i) > 127 ? 2 : 1;
-        // }
-        // displayLength += 0; // 한글 3글자(+6) 정도의 여유
-        displayLength = answer.length + 6;
-        const finalWidth = Math.max(10, displayLength); // 최소 한글 7글자(14) 보장
-        input.style.width = `calc(${finalWidth}ch + 16px)`;
-
-        // --- 힌트 텍스트 설정 ---
-        let hintText = '';
-        if (mode === 'HINT') hintText = answer.charAt(0);
-        if (mode === 'TYPING') hintText = answer; // 타이핑 연습은 전체 힌트
-
-        if (hintText) {
-          const hintSpan = document.createElement('span');
-          hintSpan.className = 'memo-hint-text';
-          hintSpan.innerText = hintText;
-          wrapper.appendChild(hintSpan); // 힌트를 wrapper에 먼저 추가(배경역할)
+        if (contentArea) {
+          contentArea.className = contentArea.className.replace(/memo-mode-\w+/g, '');
+          if (mode === 'VIEW') contentArea.classList.add('memo-mode-answer');
+          if (mode === 'MASK') contentArea.classList.add('memo-mode-mask');
         }
-        
-        input.addEventListener('keydown', function(e) {
-          if (e.isComposing || e.keyCode === 229) return;
 
-          if (e.key === 'Enter') {
-            e.preventDefault(); 
-
-            if (this.value.trim() === answer) {
-              span.innerHTML = answer;
-              span.classList.add('is-correct');
-            } else {
-              span.innerHTML = answer;
-              span.classList.add('is-incorrect');
-            }
-
-            setTimeout(() => {
-              const nextInput = document.querySelector('.memo-input');
-              if (nextInput) {
-                nextInput.focus();
-              }
-            }, 10); 
+        document.querySelectorAll('.memo-mask').forEach(span => {
+          span.classList.remove('is-correct', 'is-incorrect');
+          if (span.querySelector('.memo-input')) {
+            span.innerHTML = span.dataset.answer;
           }
         });
 
-        wrapper.appendChild(input);
-        span.innerHTML = '';
-        span.appendChild(wrapper);
+        if (mode === 'BLANK' || mode === 'HINT' || mode === 'TYPING') {
+          document.querySelectorAll('.memo-mask').forEach(span => {
+            const answer = span.innerText;
+            span.dataset.answer = answer; 
+            
+            const wrapper = document.createElement('span');
+            wrapper.className = 'memo-input-wrapper';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'memo-input';
+
+            let displayLength = 0;
+            for (let i = 0; i < answer.length; i++) {
+              displayLength += answer.charCodeAt(i) > 127 ? 2 : 1;
+            }
+            displayLength += 6; 
+            const finalWidth = Math.max(14, displayLength); 
+            input.style.width = `calc(${finalWidth}ch + 16px)`;
+
+            let hintText = '';
+            if (mode === 'HINT') hintText = answer.charAt(0);
+            if (mode === 'TYPING') hintText = answer; 
+
+            if (hintText) {
+              const hintSpan = document.createElement('span');
+              hintSpan.className = 'memo-hint-text';
+              hintSpan.innerText = hintText;
+              wrapper.appendChild(hintSpan); 
+            }
+            
+            input.addEventListener('keydown', function(e) {
+              if (e.isComposing || e.keyCode === 229) return;
+
+              if (e.key === 'Enter') {
+                e.preventDefault(); 
+
+                // --- [오류 수정된 부분] 포커스 이동 로직 ---
+                // 1. 현재 문서에 있는 모든 텍스트박스를 배열로 가져옵니다.
+                const allInputs = Array.from(document.querySelectorAll('.memo-input'));
+                // 2. 현재 입력 중인 텍스트박스의 순서(Index)를 찾습니다.
+                const currentIndex = allInputs.indexOf(this);
+                // 3. 바로 다음 순서의 텍스트박스를 미리 지정해둡니다.
+                const nextInput = allInputs[currentIndex + 1]; 
+                // ------------------------------------------
+
+                if (this.value.trim() === answer) {
+                  span.innerHTML = answer;
+                  span.classList.add('is-correct');
+                } else {
+                  span.innerHTML = answer;
+                  span.classList.add('is-incorrect');
+                }
+
+                // 4. 다음 텍스트박스가 존재한다면 그곳으로 포커스를 옮깁니다.
+                if (nextInput) {
+                  setTimeout(() => {
+                    nextInput.focus();
+                  }, 10); 
+                }
+              }
+            });
+
+            wrapper.appendChild(input);
+            span.innerHTML = '';
+            span.appendChild(wrapper);
+          });
+        }
+      }
+
+      function toggleEditMode(state) {
+        const bottomPanel = document.getElementById('memoBottomPanel');
+
+        if (state === 'TOGGLE') {
+          state = isEditMode ? 'OFF' : 'ON';
+        }
+
+        if (state === 'OFF') {
+          isEditMode = false;
+          bottomPanel.classList.remove('show');
+          contentArea.removeEventListener('mouseup', handleSelection);
+          contentArea.removeEventListener('contextmenu', handleRightClick);
+          return;
+        }
+
+        setMode('VIEW'); 
+        isEditMode = true;
+        bottomPanel.classList.add('show');
+
+        contentArea.addEventListener('mouseup', handleSelection);
+        contentArea.addEventListener('contextmenu', handleRightClick);
+      }
+
+      function handleSelection() {
+        if (!isEditMode) return;
+        const selection = window.getSelection();
+        if (!selection.isCollapsed && selection.toString().trim() !== '') {
+          saveHistory(); 
+          const range = selection.getRangeAt(0);
+          const span = document.createElement('span');
+          span.className = 'memo-mask';
+          span.dataset.answer = selection.toString();
+          
+          try {
+            range.surroundContents(span);
+          } catch (e) {
+            alert('여러 단락을 걸쳐서 마스킹할 수 없습니다. 한 문장 안에서 드래그해주세요.');
+          }
+          selection.removeAllRanges();
+        }
+      }
+
+      function handleRightClick(e) {
+        if (!isEditMode) return;
+        const target = e.target.closest('.memo-mask');
+        if (target) {
+          e.preventDefault(); 
+          saveHistory();
+          const text = document.createTextNode(target.dataset.answer || target.innerText);
+          target.parentNode.replaceChild(text, target);
+        }
+      }
+
+      function saveHistory() {
+        historyStack.push(contentArea.innerHTML);
+        if (historyStack.length > 20) historyStack.shift(); 
+      }
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isEditMode) {
+          toggleEditMode('OFF');
+        }
+
+        if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
+          if (isEditMode && historyStack.length > 0) {
+            e.preventDefault();
+            contentArea.innerHTML = historyStack.pop();
+          }
+        }
       });
-    }
-  }
 
-  function toggleEditMode(state) {
-    const bottomPanel = document.getElementById('memoBottomPanel');
-
-    if (state === 'TOGGLE') {
-      state = isEditMode ? 'OFF' : 'ON';
-    }
-
-    if (state === 'OFF') {
-      isEditMode = false;
-      bottomPanel.classList.remove('show');
-      contentArea.removeEventListener('mouseup', handleSelection);
-      contentArea.removeEventListener('contextmenu', handleRightClick);
-      return;
-    }
-
-    setMode('VIEW'); 
-    isEditMode = true;
-    bottomPanel.classList.add('show');
-
-    contentArea.addEventListener('mouseup', handleSelection);
-    contentArea.addEventListener('contextmenu', handleRightClick);
-  }
-
-  function handleSelection() {
-    if (!isEditMode) return;
-    const selection = window.getSelection();
-    if (!selection.isCollapsed && selection.toString().trim() !== '') {
-      saveHistory(); 
-      const range = selection.getRangeAt(0);
-      const span = document.createElement('span');
-      span.className = 'memo-mask';
-      span.dataset.answer = selection.toString();
-      
-      try {
-        range.surroundContents(span);
-      } catch (e) {
-        alert('여러 단락을 걸쳐서 마스킹할 수 없습니다. 한 문장 안에서 드래그해주세요.');
+      function copyToClipboard() {
+        const htmlToCopy = contentArea.innerHTML;
+        
+        navigator.clipboard.writeText(htmlToCopy).then(() => {
+          alert("마스킹이 적용된 HTML이 클립보드에 복사되었습니다!\n\n게시글 수정 -> '기본모드'를 'HTML'로 변경 후 전체 붙여넣기(Cmd/Ctrl + V) 해주세요.");
+          toggleEditMode('OFF');
+        }).catch(err => {
+          alert("복사 실패. 브라우저 권한을 확인해주세요.");
+        });
       }
-      selection.removeAllRanges();
-    }
-  }
 
-  function handleRightClick(e) {
-    if (!isEditMode) return;
-    const target = e.target.closest('.memo-mask');
-    if (target) {
-      e.preventDefault(); 
-      saveHistory();
-      const text = document.createTextNode(target.dataset.answer || target.innerText);
-      target.parentNode.replaceChild(text, target);
-    }
-  }
-
-  function saveHistory() {
-    historyStack.push(contentArea.innerHTML);
-    if (historyStack.length > 20) historyStack.shift(); 
-  }
-
-  window.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && isEditMode) {
-      toggleEditMode('OFF');
-    }
-
-    if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
-      if (isEditMode && historyStack.length > 0) {
-        e.preventDefault();
-        contentArea.innerHTML = historyStack.pop();
-      }
-    }
-  });
-
-  function copyToClipboard() {
-    const htmlToCopy = contentArea.innerHTML;
-    
-    navigator.clipboard.writeText(htmlToCopy).then(() => {
-      alert("마스킹이 적용된 HTML이 클립보드에 복사되었습니다!\n\n게시글 수정 -> '기본모드'를 'HTML'로 변경 후 전체 붙여넣기(Cmd/Ctrl + V) 해주세요.");
-      toggleEditMode('OFF');
-    }).catch(err => {
-      alert("복사 실패. 브라우저 권한을 확인해주세요.");
-    });
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    setMode('VIEW');
-  });
-</script>
+      window.addEventListener('DOMContentLoaded', () => {
+        setMode('VIEW');
+      });
+    </script>
