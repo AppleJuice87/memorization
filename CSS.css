@@ -1,3 +1,5 @@
+/* 여기서부터 내가 추가 ----------------------------------------- */
+
 /* --- 메모 마스킹 기본 스타일 --- */
 .memo-mask {
   display: inline-block;
@@ -96,6 +98,14 @@
 }
 .memo-btn.gray-btn:hover {
   background-color: #c8c8c8; /* 마우스 호버 시 약간 짙어짐 */
+}
+
+/* 오답만 남기기 버튼 (연한 빨간색) */
+.memo-btn.red-btn {
+  background-color: #ffb8b8; 
+}
+.memo-btn.red-btn:hover {
+  background-color: #ff9999; 
 }
 
 /* --- 하단 커스텀 편집 안내 패널 --- */
