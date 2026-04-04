@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" id="hELLO" x-data="app" lang="ko">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>[##_page_title_##] — [##_title_##]</title>
+    <link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]">
+    <link rel="preconnect" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" :href='"//cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"'>
+    <link rel="stylesheet" :href='"//fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap"'>
+    <link rel="stylesheet" :href='"//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"'>
+    <link rel="stylesheet" :href="`//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/${dark ? skinOptions.hljsDark : skinOptions.hljs}.min.css`">
+    <script src="./images/bootstrap.js"></script>
+    <style>
+      :root {
+        --h-idx: 1100px;
+        /* index */
+        --h-pem: [##_var_width_##]px;
+        /* permalink */
+        --h-s: 256px;
+        /* sidebar */
+        --h-c: calc(100% - var(--h-s));
+        /* content */
+        --h-h: 256px;
+        /* header */
+      }
+    </style>
+    <script>
+      /**
+       * Set skin options
+       *
+       * @see https://tistory.github.io/document-tistory-skin/common/variable.html
+       * @see docs/index.xml
+       */
+      window.skinOptions = {
+        sidebar: '[##_var_sidebar_##]',
+        foldableCategory: '[##_var_foldable-category_##]',
+        width: '[##_var_width_##]',
+        toc: '[##_var_toc_##]',
+        scrollspy: '[##_var_scrollspy_##]',
+        hljs: '[##_var_hljs_##]',
+        hljsDark: '[##_var_hljs-dark_##]',
+        headerStyle: '[##_var_header-style_##]'
+      }
+    </script>
+    <script defer src="./images/app.7a34e850485af0eec81e.js"></script>
+    <script defer src="./images/vendor.7a34e850485af0eec81e.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./images/script.D5XZ88yUlp4306n96KBD.js"></script>
+  </head>
+
+  <body class="overflow-x-hidden bg-h-100 dark:bg-h-800" id="[##_body_id_##]">
+    <div class="w-screen h-screen fixed top-0 left-0 z-[10000] flex items-center justify-center bg-h-100 dark:bg-h-800" id="loader" x-show="loading" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+      <div class="loading rounded-full w-14 h-14 my-14 mx-auto text-base relative border-2 border-solid border-h-500/20 border-l-h-500 dark:border-h-100/20 dark:border-l-h-100 animate-loading"></div>
+    </div>
+    <s_t3>
+      <div class="pl-0 break-all <s_if_var_sidebar>xl:pl-s</s_if_var_sidebar>" id="index" x-data="{ sidebar: false }">
+        <main class="pb-12 lg:pb-16" id="main"><template x-if="$store.header.show">
+            <header class="mb-10 lg:mb-16" id="global-header" x-ref="globalHeader">
+              <div class="info border-b border-solid border-b-h-300 dark:border-b-h-600 h-h min-h-[theme(spacing.h)] flex flex-col justify-center items-center text-center gap-y-1 text-h-800 dark:text-h-200">
+                <div class="tit font-bold text-3xl" data-empty="검색어가 없어요 :(" x-init="$store.header.title = `[##_page_title_##]`" x-text="$store.header.title"></div><span class="desc font-bold text-sm">[##_title_##]</span>
+              </div>
+            </header>
+          </template>
+          <s_tag>
+            <section class="index-container" id="tag" x-init='$store.header.title = "태그 클라우드"'>
+              <ul class="tags grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+                <s_tag_rep>
+                  <li class="tag"><a class="link flex items-center justify-center text-sm p-4 text-overflow-hidden text-center rounded-md duration-200 w-full bg-h-200 text-h-500 hover:bg-h-600 hover:text-h-200 dark:text-h-400 dark:bg-h-700 dark:hover:bg-h-600 [##_tag_class_##]" href="[##_tag_link_##]">[##_tag_name_##]</a></li>
+                </s_tag_rep>
+              </ul>
+            </section>
+          </s_tag>
+          <s_notice_rep>
+            <s_index_article_rep>
+              <div class="post"><a class="link" href="[##_notice_rep_link_##]"></a>
+                <div class="content">
+                  <div class="picture">
+                    <s_notice_rep_thumbnail>
+                      <div class="img"><img class="thumb lazyload" data-src="[##_notice_rep_thumbnail_url_##]" data-sizes="auto" alt=""></div>
+                    </s_notice_rep_thumbnail>
+                    <div class="fallback"></div>
+                  </div>
+                  <div class="info">
+                    <div class="header">
+                      <div class="tit">[##_notice_rep_title_##]</div>
+                      <div class="desc"><time class="date">[##_notice_rep_simple_date_##]</time><span class="delimiter">·</span>
+                        <div class="category">공지사항</div>
+                      </div>
+                    </div>
+                    <div class="summary">[##_notice_rep_summary_##]</div>
+                  </div>
+                </div>
+              </div>
+            </s_index_article_rep>
+            <s_permalink_article_rep>
+              <section id="post" x-init="$store.header.show = false">
+                <header class="px-4 mb-10 lg:px-0 lg:mb-16" id="header" x-ref="header" data-header-style="[##_var_header-style_##]">
+                  <s_notice_rep_thumbnail>
+                    <div class='img absolute right-0 top-0 w-full before:content-[""] before:absolute before:right-0 before:top-0 before:w-full before:bg-h-900/20 before:z-10'><img class="thumb absolute right-0 top-0 w-full h-full z-0 object-cover" src="[##_notice_rep_thumbnail_raw_url_##]" alt=""></div>
+                  </s_notice_rep_thumbnail>
+                  <div class="info border-b border-solid border-b-h-300 dark:border-b-h-600 min-h-[theme(spacing.h)] flex flex-col justify-center items-center gap-y-1 relative z-20 text-h-800 dark:text-h-200">
+                    <h1 class="tit text-center font-bold text-3xl max-w-screen-lg">[##_notice_rep_title_##]</h1>
+                    <div class="desc flex gap-x-1 text-sm"><time class="date">[##_notice_rep_date_##]</time><span class="delimiter">·</span><a class="category /notice">공지사항</a></div>
+                  </div>
+                </header>
+                <div class="permalink-container relative" id="content" x-data="content">
+                  <s_if_var_toc><template x-if="$data.headings.length > 0">
+                      <aside class="rounded-md p-5 mb-8 box-border bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200" id="toc">
+                        <div class="tit flex items-center justify-between text-overflow-hidden text-sm pb-2 mb-4 border-b border-solid border-h-300 dark:border-h-600"><span class="txt text-base">목차</span><i class="ico fas fa-bars"></i></div>
+                        <ol class="tits flex flex-col gap-y-3"><template x-for="heading in $data.headings" :key="heading.id">
+                            <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link flex items-center justify-between text-sm duration-200 text-h-400 hover:text-h-600 dark:hover:text-h-200" :href="heading.href">
+                                <div class="txt text-overflow-hidden" x-text="heading.text"></div><i class="ico fas fa-arrow-right scale-75"></i>
+                              </a></li>
+                          </template></ol>
+                      </aside>
+                    </template></s_if_var_toc>
+                  <article id="article" x-ref="article">[##_notice_rep_desc_##]</article>
+                  <s_if_var_scrollspy><template x-if="$data.headings.length > 0">
+                      <aside class="2xl:absolute 2xl:top-0 2xl:h-full 2xl:ml-[calc(((1100px+theme(spacing.pem))/2)+theme(spacing.5))]" id="scrollspy" x-data="scrollspy" @scroll.window="scrollspy" x-transition:enter="transition ease-linear duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="show">
+                        <div class="area 2xl:sticky 2xl:top-20"><button class="open fixed top-20 right-0 w-8 h-8 z-[200] rounded-md bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200 2xl:hidden" x-show="! open" @click="toggle"><span class="txt text-hidden">목차</span><i class="ico fa-solid fa-list-check"></i></button>
+                          <div class="wrap max-h-[calc(100vh-theme(spacing.20)-theme(spacing.10)-theme(spacing.3)-2rem)] overflow-hidden w-56 text-sm box-border max-2xl:transition-[right] max-2xl:duration-200 max-2xl:rounded-xl max-2xl:fixed max-2xl:top-20 max-2xl:z-[201] max-2xl:bg-h-200 max-2xl:dark:bg-h-700 2xl:block" :class='open ? "max-2xl:right-4" : "max-2xl:-right-60"'>
+                            <div class="spy overflow-x-hidden overflow-y-scroll max-h-[inherit] w-[calc(theme(spacing.56)+theme(spacing.5))]"><button class="close absolute text-base top-3 right-4 text-h-500 dark:text-h-200 2xl:hidden" @click="toggle"><span class="txt text-hidden">목차 닫기</span><i class="ico fa-solid fa-xmark"></i></button>
+                              <ol class="tits flex flex-col gap-y-3 max-2xl:p-6 max-2xl:pt-8 max-2xl:pr-14 2xl:px-8"><template x-for="heading in $data.headings" :key="heading.id">
+                                  <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link duration-200" :href="heading.href" x-text="heading.text" :class='heading.active ? "text-h-600 dark:text-h-200" : "text-h-400 hover:text-h-600 dark:hover:text-h-200"'></a></li>
+                                </template></ol>
+                            </div>
+                          </div>
+                        </div>
+                      </aside>
+                    </template></s_if_var_scrollspy>
+                </div>
+                <footer class="permalink-container mb-9" id="footer">
+                  <div class="border-t border-b border-h-300 dark:border-h-600 mt-6 py-8 flex gap-x-5 items-center" id="author"><img class="thumb lazyload rounded-full object-cover w-20 h-20" data-src="[##_image_##]" data-sizes="auto" width="80" height="80" alt="[##_blogger_##]">
+                    <div class="profile flex flex-col gap-y-1">
+                      <div class="blogger text-h-800 dark:text-h-200 font-bold">[##_blogger_##]</div>
+                      <div class="desc leading-7 text-sm text-h-400">[##_desc_##]</div>
+                    </div>
+                  </div>
+                </footer>
+              </section>
+            </s_permalink_article_rep>
+          </s_notice_rep>
+          <s_guest>
+            <section class="permalink-container" id="guestbook" x-init='$store.header.title = "방명록"'>
+              <div id="group">[##_guestbook_group_##]</div>
+            </section>
+          </s_guest>
+          <s_list>
+            <section id="list" x-data='{ listStyle: "[##_list_style_##]" }' x-init='$store.header.title = "[##_list_conform_##]"' :data-list-style="listStyle">
+              <s_list_rep>
+                <div class="post"><a class="link" href="[##_list_rep_link_##]"></a>
+                  <div class="content">
+                    <div class="picture">
+                      <s_list_rep_thumbnail>
+                        <div class="img"><img class="thumb lazyload" data-src="[##_list_rep_thumbnail_##]" data-sizes="auto" alt=""></div>
+                      </s_list_rep_thumbnail>
+                      <div class="fallback"></div>
+                    </div>
+                    <div class="info">
+                      <div class="header">
+                        <div class="tit">[##_list_rep_title_##]</div>
+                        <div class="desc"><time class="date">[##_list_rep_regdate_##]</time><span class="delimiter">·</span>
+                          <div class="category">[##_list_rep_category_##]</div>
+                        </div>
+                      </div>
+                      <div class="summary">[##_list_rep_summary_##]</div>
+                    </div>
+                  </div>
+                </div>
+              </s_list_rep>
+              <s_list_empty>
+                <div class="rounded-sm text-center p-6 text-h-800 dark:text-h-200 bg-h-200 dark:bg-h-700" id="empty" x-init='listStyle = "empty"'>
+                  <div class="txt font-bold">게시글을 찾을 수 없습니다.</div>
+                  <div class="desc">검색어를 다시 입력하거나 다른 카테고리로 이동해보세요.</div>
+                </div>
+              </s_list_empty>
+            </section>
+          </s_list>
+          <s_cover_group>
+            <section class="flex flex-col gap-y-12 lg:gap-y-16" id="cover" x-init="$store.header.show = false">
+              <s_cover_rep>
+                <s_cover name="list">
+                  <section class="cover flex flex-col items-center" data-cover-name="list">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="list">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="grid">
+                  <section class="cover flex flex-col items-center" data-cover-name="grid">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="grid">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="Z">
+                  <section class="cover flex flex-col items-center" data-cover-name="Z">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="Z">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="gallery">
+                  <section class="cover flex flex-col items-center" data-cover-name="gallery">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="gallery">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="slider">
+                  <section class="cover flex flex-col items-center" data-cover-name="slider">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts swiper" data-list-style="slider">
+                      <div class="wrap swiper-wrapper">
+                        <s_cover_item>
+                          <div class="post swiper-slide"><a class="link" href="[##_cover_item_url_##]"></a>
+                            <div class="content">
+                              <div class="picture">
+                                <s_cover_item_thumbnail>
+                                  <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                                </s_cover_item_thumbnail>
+                                <div class="fallback"></div>
+                              </div>
+                              <div class="info">
+                                <div class="header">
+                                  <div class="tit">[##_cover_item_title_##]</div>
+                                  <s_cover_item_article_info>
+                                    <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                      <div class="category">[##_cover_item_category_##]</div>
+                                    </div>
+                                  </s_cover_item_article_info>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </s_cover_item>
+                      </div>
+                      <div class="next swiper-button-next"></div>
+                      <div class="prev swiper-button-prev"></div>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-1">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-1">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-2" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-3">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-3">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-4" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-4">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-4">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-6" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-5">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-5">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-8" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="profile">
+                  <section class="cover flex flex-col items-center" data-cover-name="profile">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="profile">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="poster">
+                  <section class="cover flex flex-col items-center" data-cover-name="poster">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="poster">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="square">
+                  <section class="cover flex flex-col items-center" data-cover-name="square">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="square">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-1-1-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-1-1-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-1-1">
+                      <s_cover_item>
+                        <div class="post mr-auto cover-content-left"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-1-1-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-1-1-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-1-1">
+                      <s_cover_item>
+                        <div class="post mx-auto cover-content-center"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-1-1-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-1-1-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-1-1">
+                      <s_cover_item>
+                        <div class="post ml-auto cover-content-right"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-2-3-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-2-3-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-2-3">
+                      <s_cover_item>
+                        <div class="post mr-auto cover-content-left"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-2-3-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-2-3-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-2-3">
+                      <s_cover_item>
+                        <div class="post mx-auto cover-content-center"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-2-3-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-2-3-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-2-3">
+                      <s_cover_item>
+                        <div class="post ml-auto cover-content-right"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="list-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="list-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="list-2">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="grid-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="grid-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="grid-2">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="N">
+                  <section class="cover flex flex-col items-center" data-cover-name="N">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="N">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="Z-">
+                  <section class="cover flex flex-col items-center" data-cover-name="Z-">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="Z-">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="grid-5">
+                  <section class="cover flex flex-col items-center" data-cover-name="grid-5">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="grid-5">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-3xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-3xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-3xl">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-3xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-3xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-3xl">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-3xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-3xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-3xl">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-2xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-2xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-2xl">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-2xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-2xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-2xl">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-2xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-2xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-2xl">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-xl">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-xl">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-xl">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-lg">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-lg">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-lg">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-lg">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-lg">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-lg">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-lg">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-lg">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-lg">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-summary-1/2">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-summary-1/2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-summary-1/2">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-summary-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-summary-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-summary-2">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-title-1/2">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-title-1/2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary-title-1/2">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="button-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="button-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-start" data-list-style="button">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="button-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="button-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-center" data-list-style="button">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="button-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="button-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-end" data-list-style="button">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="link-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="link-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-start" data-list-style="link">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="link-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="link-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-center" data-list-style="link">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="link-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="link-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-end" data-list-style="link">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="keyword-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="keyword-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-start" data-list-style="keyword">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="keyword-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="keyword-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-center" data-list-style="keyword">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="keyword-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="keyword-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-end" data-list-style="keyword">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+              </s_cover_rep>
+            </section>
+          </s_cover_group>
+          <s_article_rep>
+            <s_permalink_article_rep>
+              <section id="entry">
+                <section id="post" x-init="$store.header.show = false">
+                  <header class="px-4 mb-10 lg:px-0 lg:mb-16" id="header" x-ref="header" data-header-style="[##_var_header-style_##]">
+                    <s_article_rep_thumbnail>
+                      <div class='img absolute right-0 top-0 w-full before:content-[""] before:absolute before:right-0 before:top-0 before:w-full before:bg-h-900/20 before:z-10'><img class="thumb absolute right-0 top-0 w-full h-full z-0 object-cover" src="[##_article_rep_thumbnail_raw_url_##]" alt=""></div>
+                    </s_article_rep_thumbnail>
+                    <div class="info border-b border-solid border-b-h-300 dark:border-b-h-600 min-h-[theme(spacing.h)] flex flex-col justify-center items-center gap-y-1 relative z-20 text-h-800 dark:text-h-200">
+                      <h1 class="tit text-center font-bold text-3xl max-w-screen-lg">[##_article_rep_title_##]</h1>
+                      <div class="desc flex gap-x-1 text-sm"><time class="date">[##_article_rep_date_##]</time><span class="delimiter">·</span><a class="category" href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a><span class="flex gap-x-1" id="admin">
+                          <s_ad_div><a class="modify" href="[##_s_ad_m_link_##]">수정</a><button class="delete" onclick="[##_s_ad_d_onclick_##]">삭제</button><button class="visibility" onclick="[##_s_ad_s2_onclick_##]">[##_s_ad_s1_label_##]</button></s_ad_div>
+                        </span></div>
+                    </div>
+                  </header>
+                  <div class="permalink-container relative" id="content" x-data="content">
+                    <s_if_var_toc><template x-if="$data.headings.length > 0">
+                        <aside class="rounded-md p-5 mb-8 box-border bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200" id="toc">
+                          <div class="tit flex items-center justify-between text-overflow-hidden text-sm pb-2 mb-4 border-b border-solid border-h-300 dark:border-h-600"><span class="txt text-base">목차</span><i class="ico fas fa-bars"></i></div>
+                          <ol class="tits flex flex-col gap-y-3"><template x-for="heading in $data.headings" :key="heading.id">
+                              <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link flex items-center justify-between text-sm duration-200 text-h-400 hover:text-h-600 dark:hover:text-h-200" :href="heading.href">
+                                  <div class="txt text-overflow-hidden" x-text="heading.text"></div><i class="ico fas fa-arrow-right scale-75"></i>
+                                </a></li>
+                            </template></ol>
+                        </aside>
+                      </template></s_if_var_toc>
+                    <article id="article" x-ref="article">[##_article_rep_desc_##]</article>
+                    <s_if_var_scrollspy><template x-if="$data.headings.length > 0">
+                        <aside class="2xl:absolute 2xl:top-0 2xl:h-full 2xl:ml-[calc(((1100px+theme(spacing.pem))/2)+theme(spacing.5))]" id="scrollspy" x-data="scrollspy" @scroll.window="scrollspy" x-transition:enter="transition ease-linear duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="show">
+                          <div class="area 2xl:sticky 2xl:top-20"><button class="open fixed top-20 right-0 w-8 h-8 z-[200] rounded-md bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200 2xl:hidden" x-show="! open" @click="toggle"><span class="txt text-hidden">목차</span><i class="ico fa-solid fa-list-check"></i></button>
+                            <div class="wrap max-h-[calc(100vh-theme(spacing.20)-theme(spacing.10)-theme(spacing.3)-2rem)] overflow-hidden w-56 text-sm box-border max-2xl:transition-[right] max-2xl:duration-200 max-2xl:rounded-xl max-2xl:fixed max-2xl:top-20 max-2xl:z-[201] max-2xl:bg-h-200 max-2xl:dark:bg-h-700 2xl:block" :class='open ? "max-2xl:right-4" : "max-2xl:-right-60"'>
+                              <div class="spy overflow-x-hidden overflow-y-scroll max-h-[inherit] w-[calc(theme(spacing.56)+theme(spacing.5))]"><button class="close absolute text-base top-3 right-4 text-h-500 dark:text-h-200 2xl:hidden" @click="toggle"><span class="txt text-hidden">목차 닫기</span><i class="ico fa-solid fa-xmark"></i></button>
+                                <ol class="tits flex flex-col gap-y-3 max-2xl:p-6 max-2xl:pt-8 max-2xl:pr-14 2xl:px-8"><template x-for="heading in $data.headings" :key="heading.id">
+                                    <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link duration-200" :href="heading.href" x-text="heading.text" :class='heading.active ? "text-h-600 dark:text-h-200" : "text-h-400 hover:text-h-600 dark:hover:text-h-200"'></a></li>
+                                  </template></ol>
+                              </div>
+                            </div>
+                          </div>
+                        </aside>
+                      </template></s_if_var_scrollspy>
+                  </div>
+                  <footer class="permalink-container mb-9" id="footer">
+                    <s_article_related>
+                      <div class="rounded-md p-5 mt-4 mb-2 box-border bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200" id="related">
+                        <div class="tit font-bold flex items-center justify-between text-overflow-hidden text-sm pb-2 mb-4 border-b border-solid border-h-300 dark:border-h-600"><span class="txt">'[##_article_rep_category_##]' 카테고리의 다른 글</span><i class="ico fas fa-bars"></i></div>
+                        <ul class="posts flex flex-col gap-y-2">
+                          <s_article_related_rep>
+                            <li class="post"><a class="tit flex items-center justify-between text-sm" href="[##_article_related_rep_link_##]">
+                                <div class="txt text-overflow-hidden">[##_article_related_rep_title_##]</div><i class="ico fas fa-arrow-right scale-75"></i>
+                              </a></li>
+                          </s_article_related_rep>
+                        </ul>
+                      </div>
+                    </s_article_related>
+                    <s_tag_label>
+                      <div class="flex flex-wrap mt-1 gap-x-2 text-[0]" id="tags" x-data="tag">[##_tag_label_rep_##]</div>
+                    </s_tag_label>
+                    <div class="border-t border-b border-h-300 dark:border-h-600 mt-6 py-8 flex gap-x-5 items-center" id="author"><img class="thumb lazyload rounded-full object-cover w-20 h-20" data-src="[##_image_##]" data-sizes="auto" width="80" height="80" alt="[##_blogger_##]">
+                      <div class="profile flex flex-col gap-y-1">
+                        <div class="blogger text-h-800 dark:text-h-200 font-bold">[##_blogger_##]</div>
+                        <div class="desc leading-7 text-sm text-h-400">[##_desc_##]</div>
+                      </div>
+                    </div>
+                  </footer>
+                </section>
+                <aside id="popup">
+                  <s_article_prev>
+                    <div class="popup fixed bottom-3 flex z-[100] h-[calc(theme(spacing.24))] max-lg:hidden ml-4" x-data="{ open: true }" x-transition:enter="transition ease-linear duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="open && $store.indicator.scrolled > 50" id="prev"><a class="link absolute top-0 left-0 w-full h-full z-10" href="[##_article_prev_link_##]"></a>
+                      <s_article_prev_thumbnail>
+                        <div class="img"><img class="thumb w-24 h-24 object-cover" src="[##_article_prev_thumbnail_link_##]" alt="" width="96" height="96"></div>
+                      </s_article_prev_thumbnail>
+                      <div class="content relative w-64 p-4 border-box flex flex-col gap-y-2 bg-h-200 dark:text-h-200 dark:bg-h-700"><button class="close absolute text-base top-3 right-4 text-h-400 dark:hover:text-h-200 z-20" @click="open = ! open"><span class="txt text-hidden">닫기</span><i class="ico fa-solid fa-xmark"></i></button>
+                        <div class="tit text-xs text-h-400">이전 글</div>
+                        <div class="info text-h-500 dark:text-h-200">
+                          <div class="tit text-sm font-semibold text-overflow-hidden max-w-[calc(theme(spacing.56))]">[##_article_prev_title_##]</div>
+                          <div class="desc text-2xs"><time class="date">[##_article_prev_date_##]</time></div>
+                        </div>
+                      </div>
+                    </div>
+                  </s_article_prev>
+                  <s_article_next>
+                    <div class="popup fixed bottom-3 flex z-[100] h-[calc(theme(spacing.24))] max-lg:hidden right-0 mr-4" x-data="{ open: true }" x-transition:enter="transition ease-linear duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="open && $store.indicator.scrolled > 50" id="next"><a class="link absolute top-0 left-0 w-full h-full z-10" href="[##_article_next_link_##]"></a>
+                      <s_article_next_thumbnail>
+                        <div class="img"><img class="thumb w-24 h-24 object-cover" src="[##_article_next_thumbnail_link_##]" alt="" width="96" height="96"></div>
+                      </s_article_next_thumbnail>
+                      <div class="content relative w-64 p-4 border-box flex flex-col gap-y-2 bg-h-200 dark:text-h-200 dark:bg-h-700"><button class="close absolute text-base top-3 right-4 text-h-400 dark:hover:text-h-200 z-20" @click="open = ! open"><span class="txt text-hidden">닫기</span><i class="ico fa-solid fa-xmark"></i></button>
+                        <div class="tit text-xs text-h-400">다음 글</div>
+                        <div class="info text-h-500 dark:text-h-200">
+                          <div class="tit text-sm font-semibold text-overflow-hidden max-w-[calc(theme(spacing.56))]">[##_article_next_title_##]</div>
+                          <div class="desc text-2xs"><time class="date">[##_article_next_date_##]</time></div>
+                        </div>
+                      </div>
+                    </div>
+                  </s_article_next>
+                </aside>
+                <section class="permalink-container" id="replies">
+                  <s_rp>
+                    <div id="group">[##_comment_group_##]</div>
+                  </s_rp>
+                </section>
+              </section>
+            </s_permalink_article_rep>
+          </s_article_rep>
+          <s_article_protected>
+            <s_permalink_article_rep>
+              <section id="protected" x-init='$store.header.title = "[##_article_rep_title_##]"'>
+                <div class="wrap permalink-container flex flex-col items-center gap-y-4">
+                  <p class="tit text-center leading-7 text-h-800 dark:text-h-200">보호되어 있는 글입니다.<br>내용을 보시려면 비밀번호를 입력하세요.</p><input class="input rounded-md inline-block h-10 border-0 text-sm px-3 w-48 outline-none bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200" type="password" autocomplete="off" maxlength="16" inputmode="text" id="[##_article_password_##]" name="[##_article_password_##]" onkeydown="if (event.keyCode == 13)[##_article_dissolve_##]" placeholder="비밀번호">
+                </div>
+              </section>
+            </s_permalink_article_rep>
+          </s_article_protected>
+          <s_page_rep>
+            <section id="page">
+              <section id="post" x-init="$store.header.show = false">
+                <header class="px-4 mb-10 lg:px-0 lg:mb-16" id="header" x-ref="header" data-header-style="[##_var_header-style_##]">
+                  <s_article_rep_thumbnail>
+                    <div class='img absolute right-0 top-0 w-full before:content-[""] before:absolute before:right-0 before:top-0 before:w-full before:bg-h-900/20 before:z-10'><img class="thumb absolute right-0 top-0 w-full h-full z-0 object-cover" src="[##_article_rep_thumbnail_raw_url_##]" alt=""></div>
+                  </s_article_rep_thumbnail>
+                  <div class="info border-b border-solid border-b-h-300 dark:border-b-h-600 min-h-[theme(spacing.h)] flex flex-col justify-center items-center gap-y-1 relative z-20 text-h-800 dark:text-h-200">
+                    <h1 class="tit text-center font-bold text-3xl max-w-screen-lg">[##_article_rep_title_##]</h1>
+                    <div class="desc flex gap-x-1 text-sm"><time class="date">[##_article_rep_date_##]</time><span class="delimiter">·</span></div>
+                  </div>
+                </header>
+                <div class="permalink-container relative" id="content" x-data="content">
+                  <s_if_var_toc><template x-if="$data.headings.length > 0">
+                      <aside class="rounded-md p-5 mb-8 box-border bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200" id="toc">
+                        <div class="tit flex items-center justify-between text-overflow-hidden text-sm pb-2 mb-4 border-b border-solid border-h-300 dark:border-h-600"><span class="txt text-base">목차</span><i class="ico fas fa-bars"></i></div>
+                        <ol class="tits flex flex-col gap-y-3"><template x-for="heading in $data.headings" :key="heading.id">
+                            <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link flex items-center justify-between text-sm duration-200 text-h-400 hover:text-h-600 dark:hover:text-h-200" :href="heading.href">
+                                <div class="txt text-overflow-hidden" x-text="heading.text"></div><i class="ico fas fa-arrow-right scale-75"></i>
+                              </a></li>
+                          </template></ol>
+                      </aside>
+                    </template></s_if_var_toc>
+                  <article id="article" x-ref="article">[##_article_rep_desc_##]</article>
+                  <s_if_var_scrollspy><template x-if="$data.headings.length > 0">
+                      <aside class="2xl:absolute 2xl:top-0 2xl:h-full 2xl:ml-[calc(((1100px+theme(spacing.pem))/2)+theme(spacing.5))]" id="scrollspy" x-data="scrollspy" @scroll.window="scrollspy" x-transition:enter="transition ease-linear duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="show">
+                        <div class="area 2xl:sticky 2xl:top-20"><button class="open fixed top-20 right-0 w-8 h-8 z-[200] rounded-md bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200 2xl:hidden" x-show="! open" @click="toggle"><span class="txt text-hidden">목차</span><i class="ico fa-solid fa-list-check"></i></button>
+                          <div class="wrap max-h-[calc(100vh-theme(spacing.20)-theme(spacing.10)-theme(spacing.3)-2rem)] overflow-hidden w-56 text-sm box-border max-2xl:transition-[right] max-2xl:duration-200 max-2xl:rounded-xl max-2xl:fixed max-2xl:top-20 max-2xl:z-[201] max-2xl:bg-h-200 max-2xl:dark:bg-h-700 2xl:block" :class='open ? "max-2xl:right-4" : "max-2xl:-right-60"'>
+                            <div class="spy overflow-x-hidden overflow-y-scroll max-h-[inherit] w-[calc(theme(spacing.56)+theme(spacing.5))]"><button class="close absolute text-base top-3 right-4 text-h-500 dark:text-h-200 2xl:hidden" @click="toggle"><span class="txt text-hidden">목차 닫기</span><i class="ico fa-solid fa-xmark"></i></button>
+                              <ol class="tits flex flex-col gap-y-3 max-2xl:p-6 max-2xl:pt-8 max-2xl:pr-14 2xl:px-8"><template x-for="heading in $data.headings" :key="heading.id">
+                                  <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link duration-200" :href="heading.href" x-text="heading.text" :class='heading.active ? "text-h-600 dark:text-h-200" : "text-h-400 hover:text-h-600 dark:hover:text-h-200"'></a></li>
+                                </template></ol>
+                            </div>
+                          </div>
+                        </div>
+                      </aside>
+                    </template></s_if_var_scrollspy>
+                </div>
+                <footer class="permalink-container mb-9" id="footer">
+                  <div class="border-t border-b border-h-300 dark:border-h-600 mt-6 py-8 flex gap-x-5 items-center" id="author"><img class="thumb lazyload rounded-full object-cover w-20 h-20" data-src="[##_image_##]" data-sizes="auto" width="80" height="80" alt="[##_blogger_##]">
+                    <div class="profile flex flex-col gap-y-1">
+                      <div class="blogger text-h-800 dark:text-h-200 font-bold">[##_blogger_##]</div>
+                      <div class="desc leading-7 text-sm text-h-400">[##_desc_##]</div>
+                    </div>
+                  </div>
+                </footer>
+              </section>
+            </section>
+          </s_page_rep>
+          <s_paging>
+            <ul class="flex justify-center items-center mt-12 lg:mt-20" id="paging">
+              <li class="prev"><a class="link [##_no_more_prev_##]" [##_prev_page_##]=""><span class="txt">이전</span><i class="ico fa fa-angle-left"></i></a></li>
+              <s_paging_rep>
+                <li class="num"><a class="link" [##_paging_rep_link_##]="">[##_paging_rep_link_num_##]</a></li>
+              </s_paging_rep>
+              <li class="next"><a class="link [##_no_more_next_##]" [##_next_page_##]=""><i class="ico fa fa-angle-right"></i><span class="txt">다음</span></a></li>
+            </ul>
+          </s_paging>
+        </main>
+        <aside class="h-full fixed top-0 w-s overflow-hidden z-[9000] transition-[left] duration-200 p-0 bg-h-200 dark:bg-h-700 <s_if_var_sidebar>xl:left-0</s_if_var_sidebar>" id="sidebar" :class='sidebar ? "left-0" : "-left-[calc(theme(spacing.s))]"'>
+          <ul class="wrap flex flex-col gap-y-6 overflow-x-hidden overflow-y-scroll h-full w-[calc(theme(spacing.s)+theme(spacing.8))] absolute py-6 border-box">
+            <s_sidebar>
+              <s_sidebar_element><!-- 프로필-->
+                <li class="el text-center flex flex-col items-center my-4" id="profile"><img class="thumb rounded-full w-24 h-24 object-cover" src="[##_image_##]" width="96" height="96" alt="[##_blogger_##]">
+                  <div class="tit"><a class="link link_tit text-h-800 dark:text-h-200 inline-block pt-4 pb-1 font-medium" href="[##_blog_link_##]">[##_title_##]</a></div>
+                  <div class="blogger text-h-400 text-sm">[##_blogger_##]</div>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 방문자 수-->
+                <li class="el flex justify-between" id="counter">
+                  <div class="total text-left">
+                    <div class="tit">전체</div>
+                    <div class="cnt">[##_count_total_##]</div>
+                  </div>
+                  <div class="day flex gap-x-2 text-right">
+                    <div class="today">
+                      <div class="tit">오늘</div>
+                      <div class="cnt">[##_count_today_##]</div>
+                    </div>
+                    <div class="yesterday">
+                      <div class="tit">어제</div>
+                      <div class="cnt">[##_count_yesterday_##]</div>
+                    </div>
+                  </div>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 검색-->
+                <li class="el" id="search">
+                  <search class="wrap rounded-sm flex items-center gap-x-3 border-box px-4 py-2 bg-h-300 text-h-600 dark:bg-h-600 dark:text-h-300">
+                    <s_search><label class="label" for="keyword"><span class="txt text-hidden">검색</span><i class="ico text-sm fa-solid fa-magnifying-glass"></i></label><input class="input w-full text-sm text-overflow-hidden border-none outline-none bg-h-300 dark:bg-h-600" id="keyword" autocomplete="off" name="[##_search_name_##]" value="[##_search_text_##]" onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }"><i class="ico fa-circle-arrow-right"></i></s_search>
+                  </search>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 카테고리-->
+                <li class="el" id="category" x-data="category">[##_category_list_##]</li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 블로그 메뉴-->
+                <li class="el" id="blog-menu">
+                  <h2 class="tit">블로그 메뉴</h2>[##_blog_menu_##]
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 링크-->
+                <li class="el" id="my-links">
+                  <h2 class="tit">링크</h2>
+                  <ul class="links flex flex-col gap-y-4">
+                    <s_link_rep>
+                      <li class="link">
+                        <div class="txt leading-none"><i class="ico fa-solid fa-link mr-2 text-xs"></i><a class="link text-sm" href="[##_link_url_##]" target="_blank">[##_link_site_##]</a></div>
+                      </li>
+                    </s_link_rep>
+                  </ul>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 공지사항-->
+                <li class="el" id="notice">
+                  <h2 class="tit"><a class="link link_tit" href="/notice">공지사항</a></h2>
+                  <s_rct_notice>
+                    <ul class="notices flex flex-col gap-y-4 text-sm">
+                      <s_rct_notice_rep>
+                        <li class="notice">
+                          <div class="tit text-overflow-hidden text-h-400"><i class="ico fa-solid fa-circle-exclamation text-h-400 mr-2"></i><a class="link" href="[##_notice_rep_link_##]">[##_notice_rep_title_##]</a></div>
+                        </li>
+                      </s_rct_notice_rep>
+                    </ul>
+                  </s_rct_notice>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 인기 글-->
+                <li class="el" id="popular-posts">
+                  <h2 class="tit">인기 글</h2>
+                  <ul class="posts flex flex-col gap-y-4">
+                    <s_rctps_popular_rep>
+                      <li class="post flex justify-between">
+                        <div class="tit text-overflow-hidden text-h-400"><a class="link text-sm" href="[##_rctps_rep_link_##]">[##_rctps_rep_title_##]</a>
+                          <div class="date mt-1 text-xs">[##_rctps_rep_simple_date_##]</div>
+                        </div>
+                        <s_rctps_rep_thumbnail><img class="thumb lazyload object-cover ml-3 bg-h-100 w-11 h-11" data-src="[##_rctps_rep_thumbnail_##]" data-sizes="auto" alt="" width="44" height="44"></s_rctps_rep_thumbnail>
+                      </li>
+                    </s_rctps_popular_rep>
+                  </ul>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 태그-->
+                <li class="el" id="random-tags">
+                  <h2 class="tit"><a class="link link_tit" href="/tag">태그</a></h2>
+                  <div class="tags flex flex-wrap gap-2">
+                    <s_random_tags>
+                      <div class="tag"><a class="name inline-block text-xs px-2.5 py-1.5 rounded-lg bg-h-300 dark:bg-h-600" href="[##_tag_link_##]"><i class="ico fa fa-tag mr-1.5"></i><span class="link [##_tag_class_##]">[##_tag_name_##]</span></a></div>
+                    </s_random_tags>
+                  </div>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 최근 댓글-->
+                <li class="el" id="recent-comments">
+                  <h2 class="tit">최근 댓글</h2>
+                  <ul class="comments flex flex-col gap-y-4">
+                    <s_rctrp_rep>
+                      <li class="comment text-h-400">
+                        <div class="txt text-overflow-hidden text-sm"><i class="ico fa-regular fa-comment-dots font-normal mr-2"></i><a class="link" href="[##_rctrp_rep_link_##]">[##_rctrp_rep_desc_##]</a></div>
+                        <div class="author mt-1 text-h-400 text-xs flex gap-x-0.5">
+                          <div class="name">[##_rctrp_rep_name_##]</div>·<time class="date">[##_rctrp_rep_time_##]</time>
+                        </div>
+                      </li>
+                    </s_rctrp_rep>
+                  </ul>
+                </li>
+              </s_sidebar_element>
+              <s_sidebar_element><!-- 최근 글-->
+                <li class="el" id="recent-posts">
+                  <h2 class="tit">최근 글</h2>
+                  <ul class="posts flex flex-col gap-y-4">
+                    <s_rctps_rep>
+                      <li class="post flex justify-between">
+                        <div class="tit text-overflow-hidden text-h-400"><a class="link text-sm" href="[##_rctps_rep_link_##]">[##_rctps_rep_title_##]</a>
+                          <div class="date mt-1 text-xs">[##_rctps_rep_simple_date_##]</div>
+                        </div>
+                        <s_rctps_rep_thumbnail><img class="thumb lazyload object-cover ml-3 bg-h-100 w-11 h-11" data-src="[##_rctps_rep_thumbnail_##]" data-sizes="auto" alt="" width="44" height="44"></s_rctps_rep_thumbnail>
+                      </li>
+                    </s_rctps_rep>
+                  </ul>
+                </li>
+              </s_sidebar_element>
+            </s_sidebar>
+            <li class="el text-h-400 flex justify-between" id="copyright"><!--이 부분은 스킨 소개페이지 및 제작자의 깃허브 링크로 이동됩니다.
+hELLO 는 무료인 만큼, 링크의 주소는 반드시 지켜주시기 바랍니다.--><small class="author flex gap-x-0.5"><a class="blog" href="https://pronist.tistory.com/5">hELLO</a>· Designed By<a class="name" href="https://github.com/pronist">정상우.</a></small><small class="version">v4.10.6</small></li>
+          </ul><template x-teleport="body">
+            <div class="fixed top-0 left-0 w-screen h-screen bg-h-900/50 backdrop-blur z-[8000] duration-200" id="mask" x-show="sidebar" x-transition:enter="transition ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="sidebar = false"></div>
+          </template>
+        </aside>
+        <aside class="fixed top-0 w-full z-[100]" id="indicator" @scroll.window="$store.indicator.indicate">
+          <div class="bar w-0 h-0.5 rounded bg-h-800 dark:bg-h-200" :style='{ width: $store.indicator.scrolled + "%" }'></div>
+        </aside>
+        <aside class="w-full box-border px-4 h-14 top-0 fixed flex justify-between items-center z-[90] <s_if_var_sidebar>xl:w-c</s_if_var_sidebar>" id="top" x-data="top" @scroll.window="toggle" :class='open ? "backdrop-blur bg-h-100/50 dark:bg-h-800/80" : "bg-transparent"'>
+          <div class="img"><img class="thumb lazyload rounded-full w-9 h-9 cursor-pointer object-cover <s_if_var_sidebar>xl:invisible</s_if_var_sidebar>" @click="sidebar = ! sidebar" data-src="[##_image_##]" data-sizes="auto" alt="[##_blogger_##]" width="36" height="36"></div>
+          <div class="tit max-w-[calc(80vw-152px)] h-5" x-show="open" x-transition:enter="transition ease-linear duration-100" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+            <div class="txt m-0 text-overflow-hidden text-sm font-bold text-h-800 dark:text-h-200">[##_page_title_##]</div>
+          </div>
+          <div class="menu_toolbar" id="menu-toolbar" x-data="menuToolbar"><template x-data="subscribe" x-if="canSubscribe"><button class="subscribe btn_subscription" :data-blog-id="T.config.BLOG.id" :data-url="TistoryBlog.tistoryUrl"><span class="txt text-hidden">구독하기</span><i class="ico fa-solid fa-star"></i></button></template></div>
+        </aside>
+        <aside class="flex justify-end px-4 w-full box-border fixed text-sm z-[90] bottom-3 <s_if_var_sidebar>xl:w-c</s_if_var_sidebar>" id="bottom" x-data="bottom">
+          <div class="wrap flex gap-x-2.5"><button class="theme btn" @click="toggleTheme"><span class="txt">테마</span><i class="ico fa-solid fa-moon"></i></button><a class="top btn" href="#hELLO"><span class="txt">상단으로</span><i class="ico fa-solid fa-chevron-up"></i></a></div>
+        </aside>
+      </div>
+    </s_t3>
+    
+
+
+
+
+
+    <!-- 여기서부터 내가 수정함 ------------------------------------->
+
+    <div class="memo-floating-panel">
+      <button class="memo-btn" onclick="setMode('VIEW')">정답 보기</button>
+      <button class="memo-btn" onclick="setMode('MASK')">마스킹 모드</button>
+      <button class="memo-btn gray-btn" onclick="setMode('BLANK')">빈칸 채우기</button>
+      <button class="memo-btn gray-btn" onclick="setMode('HINT')">첫글자 힌트</button>
+      <button class="memo-btn gray-btn" onclick="setMode('TYPING')">타이핑 연습</button>
+      
+      <button class="memo-btn red-btn" onclick="keepOnlyIncorrect()">오답만 남기기</button>
+      
+      <button class="memo-btn" onclick="toggleEditMode('TOGGLE')" style="background-color: #74b9ff; color: white;">커스텀 편집</button>
+    </div>
+
+    <div id="memoBottomPanel" class="memo-bottom-panel">
+      <span id="panelGuideText">[드래그]: 빈칸 생성 &nbsp;&nbsp; [우클릭]: 빈칸 제거 &nbsp;&nbsp; [Ctrl/CMD]+[Z]: 되돌리기</span>
+      
+      <div class="memo-bottom-buttons">
+        <button onclick="copyToClipboard()">저장 (클립보드 복사)</button>
+        <button onclick="toggleEditMode('OFF')">닫기 (ESC)</button>
+      </div>
+    </div>
+
+    <script>
+      let currentMode = 'VIEW';
+      let isEditMode = false;
+      let historyStack = [];
+
+      const contentArea = document.querySelector('.tt_article_useless_p_margin') || document.querySelector('.prose') || document.body;
+
+      function setMode(mode) {
+        if (isEditMode) return alert('편집 모드를 먼저 종료해주세요.');
+        currentMode = mode;
+        
+        if (contentArea) {
+          contentArea.className = contentArea.className.replace(/memo-mode-\w+/g, '');
+          if (mode === 'VIEW') contentArea.classList.add('memo-mode-answer');
+          if (mode === 'MASK') contentArea.classList.add('memo-mode-mask');
+        }
+
+        document.querySelectorAll('.memo-mask').forEach(span => {
+          span.classList.remove('is-correct', 'is-incorrect');
+          if (span.querySelector('.memo-input')) {
+            span.innerHTML = span.dataset.answer;
+          }
+        });
+
+        if (mode === 'BLANK' || mode === 'HINT' || mode === 'TYPING') {
+          document.querySelectorAll('.memo-mask').forEach(span => {
+            const answer = span.innerText;
+            span.dataset.answer = answer; 
+            
+            const wrapper = document.createElement('span');
+            wrapper.className = 'memo-input-wrapper';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'memo-input';
+
+            let displayLength = 0;
+            for (let i = 0; i < answer.length; i++) {
+              displayLength += answer.charCodeAt(i) > 127 ? 2 : 1;
+            }
+            displayLength += 6; 
+            const finalWidth = Math.max(14, displayLength); 
+            input.style.width = `calc(${finalWidth}ch + 16px)`;
+
+            let hintText = '';
+            if (mode === 'HINT') hintText = answer.charAt(0);
+            if (mode === 'TYPING') hintText = answer; 
+
+            if (hintText) {
+              const hintSpan = document.createElement('span');
+              hintSpan.className = 'memo-hint-text';
+              hintSpan.innerText = hintText;
+              wrapper.appendChild(hintSpan); 
+            }
+            
+            input.addEventListener('keydown', function(e) {
+              if (e.isComposing || e.keyCode === 229) return;
+
+              if (e.key === 'Enter') {
+                e.preventDefault(); 
+
+                // --- [오류 수정된 부분] 포커스 이동 로직 ---
+                // 1. 현재 문서에 있는 모든 텍스트박스를 배열로 가져옵니다.
+                const allInputs = Array.from(document.querySelectorAll('.memo-input'));
+                // 2. 현재 입력 중인 텍스트박스의 순서(Index)를 찾습니다.
+                const currentIndex = allInputs.indexOf(this);
+                // 3. 바로 다음 순서의 텍스트박스를 미리 지정해둡니다.
+                const nextInput = allInputs[currentIndex + 1]; 
+                // ------------------------------------------
+
+                if (this.value.trim() === answer) {
+                  span.innerHTML = answer;
+                  span.classList.add('is-correct');
+                } else {
+                  span.innerHTML = answer;
+                  span.classList.add('is-incorrect');
+                }
+
+                // 4. 다음 텍스트박스가 존재한다면 그곳으로 포커스를 옮깁니다.
+                if (nextInput) {
+                  setTimeout(() => {
+                    nextInput.focus();
+                  }, 10); 
+                }
+              }
+            });
+
+            wrapper.appendChild(input);
+            span.innerHTML = '';
+            span.appendChild(wrapper);
+          });
+        }
+      }
+
+      function toggleEditMode(state) {
+        const bottomPanel = document.getElementById('memoBottomPanel');
+
+        if (state === 'TOGGLE') {
+          state = isEditMode ? 'OFF' : 'ON';
+        }
+
+        if (state === 'OFF') {
+          isEditMode = false;
+          bottomPanel.classList.remove('show');
+          contentArea.removeEventListener('mouseup', handleSelection);
+          contentArea.removeEventListener('contextmenu', handleRightClick);
+          return;
+        }
+
+        setMode('VIEW'); 
+        isEditMode = true;
+        bottomPanel.classList.add('show');
+
+        contentArea.addEventListener('mouseup', handleSelection);
+        contentArea.addEventListener('contextmenu', handleRightClick);
+      }
+
+      function handleSelection() {
+        if (!isEditMode) return;
+        const selection = window.getSelection();
+        if (!selection.isCollapsed && selection.toString().trim() !== '') {
+          saveHistory(); 
+          const range = selection.getRangeAt(0);
+          const span = document.createElement('span');
+          span.className = 'memo-mask';
+          span.dataset.answer = selection.toString();
+          
+          try {
+            range.surroundContents(span);
+          } catch (e) {
+            alert('여러 단락을 걸쳐서 마스킹할 수 없습니다. 한 문장 안에서 드래그해주세요.');
+          }
+          selection.removeAllRanges();
+        }
+      }
+
+      function handleRightClick(e) {
+        if (!isEditMode) return;
+        const target = e.target.closest('.memo-mask');
+        if (target) {
+          e.preventDefault(); 
+          saveHistory();
+          const text = document.createTextNode(target.dataset.answer || target.innerText);
+          target.parentNode.replaceChild(text, target);
+        }
+      }
+
+      function saveHistory() {
+        historyStack.push(contentArea.innerHTML);
+        if (historyStack.length > 20) historyStack.shift(); 
+      }
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isEditMode) {
+          toggleEditMode('OFF');
+        }
+
+        if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
+          if (isEditMode && historyStack.length > 0) {
+            e.preventDefault();
+            contentArea.innerHTML = historyStack.pop();
+          }
+        }
+      });
+
+      function copyToClipboard() {
+        const htmlToCopy = contentArea.innerHTML;
+        
+        navigator.clipboard.writeText(htmlToCopy).then(() => {
+          alert("마스킹이 적용된 HTML이 클립보드에 복사되었습니다!\n\n게시글 수정 -> '기본모드'를 'HTML'로 변경 후 전체 붙여넣기(Cmd/Ctrl + V) 해주세요.");
+          toggleEditMode('OFF');
+        }).catch(err => {
+          alert("복사 실패. 브라우저 권한을 확인해주세요.");
+        });
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        setMode('VIEW');
+      });
+
+    // --- [추가/수정] 오답만 남기기 기능 ---
+      function keepOnlyIncorrect() {
+        if (isEditMode) return alert('편집 모드에서는 사용할 수 없습니다.');
+
+        // [추가된 로직] 문서 내에 오답(.is-incorrect)이 하나라도 있는지 확인
+        const incorrectCount = document.querySelectorAll('.memo-mask.is-incorrect').length;
+        if (incorrectCount === 0) {
+          return alert('현재 오답으로 표시된 항목이 없습니다! 🎉');
+        }
+
+        // 문서 내의 모든 마스킹 요소를 배열로 가져옵니다.
+        const masks = Array.from(document.querySelectorAll('.memo-mask'));
+        
+        masks.forEach(span => {
+          // 1. 빨간색(오답)으로 표시된 텍스트는 그대로 유지합니다.
+          if (span.classList.contains('is-incorrect')) {
+            return; 
+          }
+          
+          // 2. 텍스트 박스(input)가 들어있는 미입력 상태도 그대로 유지합니다.
+          if (span.querySelector('input')) {
+            return; 
+          }
+
+          // 3. 그 외의 경우 (초록색 정답 처리된 것 & 정답보기 모드에서 초록색인 것)
+          // 마스킹(span)을 완전히 해제하고 일반 검정색 텍스트 노드로 바꿉니다.
+          const textNode = document.createTextNode(span.dataset.answer || span.innerText);
+          span.parentNode.replaceChild(textNode, span);
+        });
+      }
+    </script>
+
+
+  </body>
+
+</html>
