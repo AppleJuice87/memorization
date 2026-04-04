@@ -192,3 +192,41 @@
 .tt_article_useless_p_margin ol ol:hover {
   border-left-color: #adadad !important; /* 조금 더 짙은 슬레이트 회색 */
 }
+
+/* --- 본문 h1, h2, h3 및 내부 링크/스팬 색상 강제 커스텀 --- */
+
+/* h1: 다크 네이비 (h1은 블로그 제목으로 취급?) */
+.prose h1, .prose h1 a, .prose h1 span,
+.tt_article_useless_p_margin h1, .tt_article_useless_p_margin h1 a, .tt_article_useless_p_margin h1 span {
+  color: #12326c !important; 
+  font-weight: bold !important;
+  text-decoration: none !important; /* 링크 밑줄 제거 */
+  font-size: 2.2em !important; /* 폰트 크기 키움 (본문의 약 2.2배) */
+}
+
+/* h2: 다크 네이비 (제목1) */
+.prose h2, .prose h2 a, .prose h2 span,
+.tt_article_useless_p_margin h2, .tt_article_useless_p_margin h2 a, .tt_article_useless_p_margin h2 span {
+  color: #12326c !important; 
+  font-weight: bold !important;
+  text-decoration: none !important;
+  font-size: 1.46em !important; /* 폰트 크기 키움 (본문의 약 1.8배) */
+}
+
+/* h3: 미디엄 블루 (제목2) */
+.prose h3, .prose h3 a, .prose h3 span,
+.tt_article_useless_p_margin h3, .tt_article_useless_p_margin h3 a, .tt_article_useless_p_margin h3 span {
+  color: #155eb0 !important; 
+  font-weight: bold !important;
+  text-decoration: none !important;
+  font-size: 1.365em !important; /* 폰트 크기 키움 (본문의 약 1.5배) */
+}
+
+/* h4: 라이트 블루 (제목3) */
+.prose h4, .prose h4 a, .prose h4 span,
+.tt_article_useless_p_margin h4, .tt_article_useless_p_margin h4 a, .tt_article_useless_p_margin h4 span {
+  color: #5e97d5 !important; 
+  font-weight: bold !important;
+  text-decoration: none !important;
+  font-size: 1.3em !important; /* 폰트 크기 키움 (본문의 약 1.25배) */
+}
